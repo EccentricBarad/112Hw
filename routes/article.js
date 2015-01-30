@@ -17,7 +17,7 @@ exports.show = function(req, res, next) {
             return next(error);
         if (!article.published)
             return res.send(401);
-        res.render('article', article);
+        res.send({articles: articles});
       });
 };
 
@@ -72,6 +72,7 @@ exports.edit = function(req, res, next) {
       function(error, article) {
         if (error)
           return next(error);
+        article.comments.concat(req.body.comments);
         article.update({$set: req.body},
           function(error, count, raw){
             if (error)
@@ -110,7 +111,7 @@ exports.del = function(req, res, next) {
 
 exports.post = function(req, res, next) {
   if (!req.body.title)
-  res.render('post');
+  res.send(doc);
 };
 
 /*
@@ -118,7 +119,7 @@ exports.post = function(req, res, next) {
  */
 exports.postArticle = function(req, res, next) {
   if (!req.body.title || !req.body.slug || !req.body.text ) {
-    return res.render('post', {error: "Fill title, slug and text."});
+    return res.send(req.body);
   }
   var article = {
     title: req.body.title,
@@ -129,6 +130,6 @@ exports.postArticle = function(req, res, next) {
   };
   req.models.Article.create(article, function(error, articleResponse) {
     if (error) return next(error);
-    res.render('post', {error: "Artical was added. Publish it on the page."});
+    res.send(articleResponse);
   });
 };

@@ -10,11 +10,11 @@ exports.show = function(req, res, next) {
   if (!req.params.txt)
       return next(new Error('No comment text.'));
 
-  req.models.Article.findOne({slug: req.params.slug},
-      function(error, article) {
+  req.models.Comment.findOne({slug: req.params.slug},
+      function(error, comments) {
         if (error)
           return next(error);
-        res.render('article', article);
+        res.send({comments: comments});
   });
 };
 
@@ -117,7 +117,7 @@ exports.edit = function(req, res, next) {
 
 exports.postComment = function(req, res, next) {
     if (!req.body.text || !req.body.belongsto ) {
-        return res.render('post', {error: "Fill text and Post."});
+        return res.send(req.body);
     }
     var comment = {
         text: req.body.text,
@@ -126,13 +126,16 @@ exports.postComment = function(req, res, next) {
 
     req.models.Comment.create(comment,
         function(error, commentResponse) {
+            if (error)
+                return next(error);
+                res.send(commentResponse);
             //Store the id of the comment in the array for the post.
             req.models.Article.findById(req.body.belongsto,
                 function(error, article) {
                     if (error)
                         return next(error);
                     if (!article)
-                        return next(new Error('article not found'));
+                        return next(new Error('comment not found'));
                     article.comments.push(commentResponse.id)
                     article.update({$set: article},
                         function(error, count, raw){
@@ -141,8 +144,6 @@ exports.postComment = function(req, res, next) {
                                 res.send({affectedCount: count});
                             })
                         });
-            if (error)
-                return next(error);
-                res.render('post', {error: "Comment was added."});
+
         });
 };
