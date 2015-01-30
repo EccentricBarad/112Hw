@@ -24,9 +24,9 @@ In order to get the project running, you need to ensure that you have all the de
       comments: {
           type: [String],
           default: []
-      },
+      }
  
- #### Comments:
+#### Comments:
      text: {
         type: String,
         required: true,
