@@ -134,3 +134,27 @@ In order to get the project running, you need to ensure that you have all the de
 	
 	Result
 		Displays all comments.
+
+## To delete a comment:
+	Example:
+	 curl -X DELETE http://localhost:3000/api/comments/<idOfComment>
+	
+	Description:
+		Deletes the comment with the ID provided!
+		
+	Parameters:
+		id : The id of the comment you would like to remove
+	
+	Result
+		Comment with ID is deleted.
+		
+
+## To update a comments:
+	Example:
+	 curl -X PUT http://localhost:3000/api/articles/<id_of_comment> --data "text=<body>"
+	
+	Description:
+		Gets the comment from the database and updates it. you cannot move a comment to a different post!
+	
+	Result
+		The comment has been updated.
