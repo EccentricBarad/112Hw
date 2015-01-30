@@ -40,72 +40,72 @@ In order to get the project running, you need to ensure that you have all the de
 # Articles:
 
 ## To create an article:
-Example:
- curl -X POST http://localhost:3000/post --data "title=NewArticleFor112&slug=CoolTag&text=Thisisthebestarticle"
-
-Description:
-	Creates a new article in the database!
+	Example:
+	 curl -X POST http://localhost:3000/post --data "title=NewArticleFor112&slug=CoolTag&text=Thisisthebestarticle"
 	
-Parameters:
-	title : title of the article
-	tag: a tag for the article
-	published: Whether this will be displayed or not.
-	text: Body of the article
-	comments: The array of comments associated with this article.
-
-Result
-	A MongoDB insert of the following structure:
-		{_id, title, slug, published, text, comments}
+	Description:
+		Creates a new article in the database!
+		
+	Parameters:
+		title : title of the article
+		tag: a tag for the article
+		published: Whether this will be displayed or not.
+		text: Body of the article
+		comments: The array of comments associated with this article.
+	
+	Result
+		A MongoDB insert of the following structure:
+			{_id, title, slug, published, text, comments}
 
 ## To delete an article:
-Example:
- curl -X DELETE http://localhost:3000/api/articles/<id of article>
-
-Description:
-	Deletes the article with the ID provided!
+	Example:
+	 curl -X DELETE http://localhost:3000/api/articles/<id of article>
 	
-Parameters:
-	id : The id of the article you would like to remove
-
-Result
-	Article with ID is deleted.
+	Description:
+		Deletes the article with the ID provided!
+		
+	Parameters:
+		id : The id of the article you would like to remove
+	
+	Result
+		Article with ID is deleted.
 
 ## To view all articles:
-Example:
- curl -X GET http://localhost:3000/api/articles
-
-Description:
-	Fetches all articles from the DB!
-
-Result
-	Displays all articles.
+	Example:
+	 curl -X GET http://localhost:3000/api/articles
+	
+	Description:
+		Fetches all articles from the DB!
+	
+	Result
+		Displays all articles.
 
 ## To view a particular article:
-Example:
- curl -XGET http://localhost:3000/articles/<tag>
-
-Description:
-	Gets a particular article with a tag from the database! There might be unhandled edge cases.
-
-Result
-	Displays the article found.
+	Example:
+	 curl -XGET http://localhost:3000/articles/<tag>
+	
+	Description:
+		Gets a particular article with a tag from the database! There might be unhandled edge cases.
+	
+	Result
+		Displays the article found.
 
 ## To update an article:
-Example:
- curl -X PUT http://localhost:3000/api/articles/54cade4a4c355cbb1a6b5404 --data "title=NewTiTLe=bsdfsd&text=AfterUpdate"
-
-Description:
-	Given a particular article ID, you can provide new article to update the previous one!
+	Example:
+	 curl -X PUT http://localhost:3000/api/articles/54cade4a4c355cbb1a6b5404 --data "title=NewTiTLe=bsdfsd&text=AfterUpdate"
 	
-Parameters:
-	title : title of the article
-	data : data relevant to post
-
-Result
-	A MongoDB insert of the following structure:
-		{_id, post_title, post_data}
+	Description:
+		Given a particular article ID, you can provide new article to update the previous one!
 		
-		
+	Parameters:
+		title : title of the article
+		data : data relevant to post
+	
+	Result
+		A MongoDB insert of the following structure:
+			{_id, post_title, post_data}
+			
+			
 # Comments:
 
 ## To create a comment:
