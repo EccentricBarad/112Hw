@@ -12,7 +12,7 @@ var articleSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  slug: {
+  tag: {
     type: String,
     set: function(value){return value.toLowerCase().replace(' ', '-')}
   },

@@ -42,17 +42,16 @@ app.use(app.router);
 app.post('/comments/post', routes.comment.postComment);
 app.del('/api/comments/:id', routes.comment.del);
 app.get('/api/comments', routes.comment.list)
-app.put('/api/comments/:id', routes.article.edit);
+app.put('/api/comments/:id', routes.comment.edit);
 
 //Articles
 app.get('/', routes.index);
 app.get('/post', routes.article.post);
 app.post('/post', routes.article.postArticle);
-app.get('/articles/:slug', routes.article.show);
+app.get('/articles/:tag', routes.article.show);
 
 //REST API ROUTES
 app.get('/api/articles', routes.article.list)
-app.post('/api/articles', routes.article.add);
 app.put('/api/articles/:id', routes.article.edit);
 app.del('/api/articles/:id', routes.article.del);
 

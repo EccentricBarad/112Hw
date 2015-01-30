@@ -1,24 +1,5 @@
 
 /*
- * GET article page.
- *
- * app.get('/comments/:id', routes.article.show);
- */
-var mongoose = require('mongoose');
-
-exports.show = function(req, res, next) {
-  if (!req.params.txt)
-      return next(new Error('No comment text.'));
-
-  req.models.Comment.findOne({slug: req.params.slug},
-      function(error, comments) {
-        if (error)
-          return next(error);
-        res.send({comments: comments});
-  });
-};
-
-/*
 * GET articles API.
 *
 * curl -X GET http://localhost:3000/api/comments
@@ -87,8 +68,8 @@ exports.del = function(req, res, next) {
 /*
  * PUT article API.
  *
- * curl -X PUT http://localhost:3000/api/articles/54cade4a4c355cbb1a6b5404
- * --data "title=ICHANGEDMYMINDslug=bsdfsd&text=RICHARDSAIDITWONTWORK"
+ * curl -X PUT http://localhost:3000/api/comments/54cade4a4c355cbb1a6b5404
+ * --data "title=ICHANGEDMYMINDtag=bsdfsd&text=RICHARDSAIDITWONTWORK"
  */
 exports.edit = function(req, res, next) {
     if (!req.params.id)
@@ -98,7 +79,7 @@ exports.edit = function(req, res, next) {
         function(error, comment) {
             if (error)
                 return next(error);
-            article.update({$set: req.body},
+            comment.update({$set: req.body},
                 function(error, count, raw){
                     if (error)
                         return next(error);
