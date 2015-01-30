@@ -151,7 +151,7 @@ In order to get the project running, you need to ensure that you have all the de
 
 ## To update a comments:
 	Example:
-	 curl -X PUT http://localhost:3000/api/articles/<id_of_comment> --data "text=<body>"
+	 curl -X PUT http://localhost:3000/api/comments/<id_of_comment> --data "text=<body>"
 	
 	Description:
 		Gets the comment from the database and updates it. you cannot move a comment to a different post!
