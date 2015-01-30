@@ -80,7 +80,7 @@ Description:
 Result
 	Displays all articles.
 
-## To view all articles:
+## To view a particular article:
 Example:
  curl -XGET http://localhost:3000/articles/<tag>
 
@@ -109,17 +109,28 @@ Result
 # Comments:
 
 ## To create a comment:
-Example:
- curl -X POST http://localhost:3000/comments/post --data "text=<Body>&belongsto=<ID_of_article_to_link_to>"
- NOTE: Post needs to exist!
- 
-Description:
-	Creates a comment that is associated with a particular article.
+	Example:
+	 curl -X POST http://localhost:3000/comments/post --data "text=<Body>&belongsto=<ID_of_article_to_link_to>"
+	 NOTE: Post needs to exist!
+	 
+	Description:
+		Creates a comment that is associated with a particular article.
+		
+	Parameters:
+		text: Body of the comment.
+		belongsto: The article this comment belongs to.
 	
-Parameters:
-	text: Body of the comment.
-	belongsto: The article this comment belongs to.
-
-Result
-	A MongoDB insert of the following structure:
-		{_id, text:, belongsto:}
+	Result
+		A MongoDB insert of the following structure:
+			{_id, text:, belongsto:}
+			
+			
+## To view all comments:
+	Example:
+	 curl -X GET http://localhost:3000/api/comments
+	
+	Description:
+		Fetches all comments from the DB!
+	
+	Result
+		Displays all comments.
