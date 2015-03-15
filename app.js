@@ -1,7 +1,3 @@
-var express = require('express'),
-  routes = require('./routes'),
-  http = require('http'),
-  path = require('path'),
   mongoose = require('mongoose'),
   models = require('./models'),
   dbUrl = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/blog',
